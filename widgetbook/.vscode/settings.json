@@ -1,0 +1,15 @@
+{
+    "workbench.colorCustomizations": {
+        "editorError.foreground": "#FFFFFF",
+        "minimap.errorHighlight": "#FFFFFF",
+        "editorLineNumber.foreground": "#4e5157",
+        "editorLineNumber.activeForeground": "#9da0a8",
+        "editor.wordHighlightBackground": "#344134",
+        "editor.findMatchBackground": "#214283",
+        "editor.findMatchBorder": "#214283",
+        "editor.findMatchHighlightBackground": "#32593D",
+        "editor.findMatchHighlightBorder": "#3C704B",
+        "minimap.background": "#00000000",
+        "scrollbar.shadow": "#00000000"
+    }
+}
