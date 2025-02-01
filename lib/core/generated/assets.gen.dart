@@ -196,7 +196,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
-
+  /// File path: assets/icons/user_icon.svg
+  String get userIcon => 'assets/icons/user_icon.svg';
 
   /// File path: assets/icons/visa.svg
   String get visa => 'assets/icons/visa.svg';
@@ -264,6 +265,7 @@ class $AssetsIconsGen {
         store,
         success,
         user,
+        userIcon,
         visa
       ];
 }
@@ -272,23 +274,26 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/kbank.png
-  String get kbank => ('assets/images/kbank.png');
+  AssetGenImage get kbank => const AssetGenImage('assets/images/kbank.png');
 
   /// File path: assets/images/logowave.png
-  String get logowave =>('assets/images/logowave.png');
+  AssetGenImage get logowave =>
+      const AssetGenImage('assets/images/logowave.png');
 
   /// File path: assets/images/mastercard.png
-  String get mastercard =>('assets/images/mastercard.png');
+  AssetGenImage get mastercard =>
+      const AssetGenImage('assets/images/mastercard.png');
 
-  /// File path: assets/images/user_icon.png
-  String get userIcon =>('assets/images/user_icon.png');
+  /// File path: assets/images/user_icon2.png
+  AssetGenImage get userIcon2 =>
+      const AssetGenImage('assets/images/user_icon2.png');
 
   /// File path: assets/images/visa.png
-  String get visa => ('assets/images/visa.png');
+  AssetGenImage get visa => const AssetGenImage('assets/images/visa.png');
 
   /// List of all assets
-  List<String> get values =>
-      [kbank, logowave, mastercard, userIcon, visa];
+  List<AssetGenImage> get values =>
+      [kbank, logowave, mastercard, userIcon2, visa];
 }
 
 class $AssetsVideosGen {

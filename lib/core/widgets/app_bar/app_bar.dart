@@ -46,7 +46,7 @@ class _WaveAppBarState extends State<WaveAppBar> {
                 child: SvgPicture.asset(
                   Assets.icons.hamburgurMenu,
                   colorFilter: ColorFilter.mode(
-                    context.waveColors.onSecondary,
+                    context.waveColors?.onSecondary ?? Colors.white,
                     BlendMode.srcIn,
                   ),
                   height: 30,
@@ -55,13 +55,16 @@ class _WaveAppBarState extends State<WaveAppBar> {
 
               // Center Logo
               Image.asset(
-                Assets.images.visa,
+                Assets.images.visa.path,
                 height: 35,
+                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error), // ป้องกัน error
               ),
-// User Icon (Top Right)
+
+              // User Icon (Top Right)
               Image.asset(
-                Assets.images.kbank, // Use .path to access the correct file path
+                Assets.images.kbank.path,
                 height: 35,
+                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
               ),
             ],
           ),
@@ -89,9 +92,9 @@ class ComplexDrawer extends StatefulWidget {
   final List<MenuItem> menuItems;
   final VoidCallback onClose;
 
-  const ComplexDrawer(
-      {Key? key, required this.menuItems, required this.onClose})
-      : super(key: key);
+  const ComplexDrawer({
+    super.key, required this.menuItems, required this.onClose
+  });
 
   @override
   _ComplexDrawerState createState() => _ComplexDrawerState();
@@ -108,10 +111,10 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
         width: isExpanded ? 250 : 100,
         height: MediaQuery.of(context).size.height * 0.9,
         decoration: BoxDecoration(
-          color: context.waveColors.outline,
+          color: context.waveColors?.outline ?? Colors.grey,
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(context.waveBorders.activeBorderbar),
-            bottomRight: Radius.circular(context.waveBorders.activeBorderbar),
+            topRight: Radius.circular(context.waveBorders?.activeBorderbar ?? 10),
+            bottomRight: Radius.circular(context.waveBorders?.activeBorderbar ?? 10),
           ),
         ),
         padding: const EdgeInsets.symmetric(vertical: 15),
@@ -120,7 +123,6 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
           children: [
             _buildHeader(context),
             Expanded(child: _buildMenuItems(context)),
-            _buildFooter(context),
           ],
         ),
       ),
@@ -136,9 +138,9 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                L10n.of(context).pageAppBar_textPage,
+                L10n.of(context)?.pageAppBar_textPage ?? "Menu",
                 style: TextStyle(
-                  color: context.waveColors.secondary,
+                  color: context.waveColors?.secondary ?? Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -148,7 +150,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
           IconButton(
             icon: Icon(
               isExpanded ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
-              color: context.waveColors.onSurface.withOpacity(0.5),
+              color: context.waveColors?.onSurface?.withOpacity(0.5) ?? Colors.white.withOpacity(0.5),
             ),
             onPressed: () {
               setState(() {
@@ -166,71 +168,17 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
       itemCount: widget.menuItems.length,
       itemBuilder: (context, index) {
         final item = widget.menuItems[index];
-        return Container(
-          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          decoration: BoxDecoration(
-            color: context.waveColors.surfaceContainer,
-            borderRadius:
-                BorderRadius.circular(context.waveBorders.borderRadiusMd),
-          ),
-          child: ListTile(
-            leading: Icon(
-              item.icon,
-              color: context.waveColors.secondary,
-            ),
-            title: isExpanded
-                ? Text(
-                    item.label,
-                    style: TextStyle(color: context.waveColors.primary),
-                  )
-                : null,
-            onTap: () {
-              widget.onClose();
-              item.onTap?.call();
-            },
-          ),
+        return ListTile(
+          leading: Icon(item.icon, color: context.waveColors?.secondary ?? Colors.white),
+          title: isExpanded
+              ? Text(item.label, style: TextStyle(color: context.waveColors?.primary ?? Colors.white))
+              : null,
+          onTap: () {
+            widget.onClose();
+            item.onTap?.call();
+          },
         );
       },
-    );
-  }
-
-  Widget _buildFooter(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 24,
-            backgroundColor: context.waveColors.surface,
-            child: ClipRRect(
-              borderRadius:
-                  BorderRadius.circular(context.waveBorders.borderRadiusFull),
-              child: SvgPicture.asset(
-                Assets.icons.kbank,
-                height: 40,
-              ),
-            ),
-          ),
-          if (isExpanded)
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Prem Shanhi",
-                    style: TextStyle(color: context.waveColors.onSurface),
-                  ),
-                  Text(
-                    "Web Designer",
-                    style:
-                        TextStyle(color: context.waveColors.onSurfaceVariant),
-                  ),
-                ],
-              ),
-            ),
-        ],
-      ),
     );
   }
 }

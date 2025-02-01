@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rhythm_wave_app/core/theme/app_bar/app_bar_theme.dart';
-import 'package:rhythm_wave_app/core/theme/button/button_theme.dart';
-import 'package:rhythm_wave_app/core/theme/text_input/text_input_theme.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/borders.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/colors.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/gradients.dart';
@@ -9,6 +6,9 @@ import 'package:rhythm_wave_app/core/theme/tokens/opacities.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/shadows.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/spacing.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/tokens.dart';
+import 'package:rhythm_wave_app/core/theme/app_bar/app_bar_theme.dart';
+import 'package:rhythm_wave_app/core/theme/button/button_theme.dart';
+import 'package:rhythm_wave_app/core/theme/text_input/text_input_theme.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/typography/typography.dart';
 
 final class WaveTheme extends ThemeExtension<WaveTheme> {
@@ -16,7 +16,6 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
       : buttonTheme = WaveButtonTheme(tokens: tokens),
         textInputTheme = WaveTextInputTheme(tokens: tokens),
         appBarTheme = WaveAppBarTheme(tokens: tokens);
-
 
   final WaveTokens tokens;
   final WaveButtonTheme buttonTheme;
@@ -38,7 +37,14 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
 }
 
 extension WaveThemeX on BuildContext {
-  WaveTheme get waveTheme => Theme.of(this).extension<WaveTheme>()!;
+  WaveTheme get waveTheme {
+    final theme = Theme.of(this).extension<WaveTheme>();
+    if (theme == null) {
+      throw Exception("❌ WaveTheme ไม่ถูกกำหนดใน ThemeData! ตรวจสอบให้แน่ใจว่าได้เพิ่ม WaveTheme ลงใน MaterialApp");
+    }
+    return theme;
+  }
+
   WaveBorders get waveBorders => waveTheme.tokens.borders;
   WaveColors get waveColors => waveTheme.tokens.colors;
   WaveGradients get waveGradients => waveTheme.tokens.gradients;

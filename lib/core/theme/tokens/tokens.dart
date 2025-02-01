@@ -7,7 +7,6 @@ import 'package:rhythm_wave_app/core/theme/tokens/shadows.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/spacing.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/typography/typography.dart';
 
-
 final class WaveTokens extends ThemeExtension<WaveTokens> {
   const WaveTokens({
     required this.borders,
@@ -19,7 +18,7 @@ final class WaveTokens extends ThemeExtension<WaveTokens> {
     required this.typography,
   });
 
-  // Provide a default instance for fallback use cases
+  // ใช้ค่าเริ่มต้นเพื่อป้องกัน null
   factory WaveTokens.defaultTokens() {
     return WaveTokens(
       borders: WaveBorders.borders,
