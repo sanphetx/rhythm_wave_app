@@ -280,6 +280,10 @@ class $AssetsImagesGen {
   AssetGenImage get logowave =>
       const AssetGenImage('assets/images/logowave.png');
 
+  /// File path: assets/images/mainicon.png
+  AssetGenImage get mainicon =>
+      const AssetGenImage('assets/images/mainicon.png');
+
   /// File path: assets/images/mastercard.png
   AssetGenImage get mastercard =>
       const AssetGenImage('assets/images/mastercard.png');
@@ -293,7 +297,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [kbank, logowave, mastercard, userIcon2, visa];
+      [kbank, logowave, mainicon, mastercard, userIcon2, visa];
 }
 
 class $AssetsVideosGen {

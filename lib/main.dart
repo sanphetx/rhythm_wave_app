@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Rhythm Wave',
       theme: ThemeData(
         extensions: <ThemeExtension<dynamic>>[
-          WaveTheme(tokens: WaveTokens.defaultTokens()), // ✅ เพิ่ม WaveTheme 
+          WaveTheme(tokens: WaveTokens.defaultTokens()), 
         ],
       ),
       localizationsDelegates: const [

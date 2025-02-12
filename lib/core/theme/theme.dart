@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rhythm_wave_app/core/theme/avatar/avatar_theme.dart';
+import 'package:rhythm_wave_app/core/theme/carouselTheme/wave_carousel_theme.dart';
+import 'package:rhythm_wave_app/core/theme/music_player/wave_music_player_Theme.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/borders.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/colors.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/gradients.dart';
@@ -15,12 +18,18 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
   WaveTheme({required this.tokens})
       : buttonTheme = WaveButtonTheme(tokens: tokens),
         textInputTheme = WaveTextInputTheme(tokens: tokens),
-        appBarTheme = WaveAppBarTheme(tokens: tokens);
+        appBarTheme = WaveAppBarTheme(tokens: tokens),
+        avatarTheme = WaveAvatarTheme(tokens: tokens),
+        musicplayerTheme = WaveMusicPlayerTheme(tokens: tokens),
+        carouselTheme = WaveCarouselTheme(tokens: tokens);
 
   final WaveTokens tokens;
   final WaveButtonTheme buttonTheme;
   final WaveTextInputTheme textInputTheme;
   final WaveAppBarTheme appBarTheme;
+  final WaveAvatarTheme avatarTheme;
+  final WaveMusicPlayerTheme musicplayerTheme;
+  final WaveCarouselTheme carouselTheme;
 
   @override
   WaveTheme copyWith({WaveTokens? tokens}) {
@@ -55,4 +64,7 @@ extension WaveThemeX on BuildContext {
   WaveButtonTheme get waveButtonTheme => waveTheme.buttonTheme;
   WaveTextInputTheme get waveTextInputTheme => waveTheme.textInputTheme;
   WaveAppBarTheme get appBarTheme => waveTheme.appBarTheme;
+  WaveAvatarTheme get waveAvatarTheme => waveTheme.avatarTheme;
+  WaveMusicPlayerTheme get musicplayerTheme => waveTheme.musicplayerTheme;
+  WaveCarouselTheme get carouselTheme => waveTheme.carouselTheme;
 }
