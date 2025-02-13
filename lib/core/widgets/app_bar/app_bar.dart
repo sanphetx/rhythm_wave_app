@@ -4,6 +4,7 @@ import 'package:rhythm_wave_app/core/generated/assets.gen.dart';
 import 'package:rhythm_wave_app/core/localization/generated/l10n.dart';
 import 'package:rhythm_wave_app/core/theme/theme.dart';
 import 'package:rhythm_wave_app/core/widgets/avatar/avatar.dart';
+import 'package:rhythm_wave_app/models/home/page/home_screen.dart';
 
 class WaveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<MenuItem> menuItems;
@@ -120,16 +121,25 @@ class _WaveAppBarState extends State<WaveAppBar> with SingleTickerProviderStateM
                       context.waveColors?.onSecondary ?? Colors.white,
                       BlendMode.srcIn,
                     ),
-                    height: 30,
+                    height: 20,
                   ),
                 ),
 
-                Image.asset(
-                  Assets.images.logowave.path,
-                  height: 35,
-                  errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.error),
-                ),
+                GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen( ),
+      ),
+    );
+  },
+  child: Image.asset(
+    Assets.images.logowave.path,
+    height: 35,
+    errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
+  ),
+),
 
                 Row(
                   children: [
