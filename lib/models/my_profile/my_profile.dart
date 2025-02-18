@@ -41,8 +41,10 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // ✅ AppBar
               WaveAppBar(menuItems: appMenuItems),
 
+              // ✅ Profile Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -59,6 +61,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
 
+                    // ✅ Profile Picture & Name
                     Row(
                       children: [
                         ClipOval(
@@ -67,15 +70,23 @@ class ProfileScreen extends StatelessWidget {
                             width: 120,
                             height: 120,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) => const Icon(
+                              Icons.person,
+                              size: 120,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const Text(
-                          "Sanphet Saefang",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                        Expanded( // ✅ ป้องกัน overflow
+                          child: Text(
+                            "Sanphet Saefang",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis, // ✅ ป้องกันข้อความยาวเกินไป
                           ),
                         ),
                       ],
@@ -83,6 +94,7 @@ class ProfileScreen extends StatelessWidget {
 
                     const SizedBox(height: 20),
 
+                    // ✅ Playlist Section
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -110,16 +122,17 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
+              // ✅ Playlist Grid
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GridView.builder(
                     padding: const EdgeInsets.only(top: 10),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,  
+                      crossAxisCount: 2,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
-                      childAspectRatio: 0.8, 
+                      childAspectRatio: 0.8,
                     ),
                     itemCount: playlists.length,
                     itemBuilder: (context, index) {
@@ -132,6 +145,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
+              // ✅ Music Player
               MusicPlayerWidget(
                 imageUrl: 'https://picsum.photos/250?image=9',
                 songTitle: 'Happier',
@@ -147,39 +161,39 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
- Widget _buildPlaylistItem(String imageUrl, String title) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.network(
-          imageUrl,
-          width: double.infinity,
-          height: 110,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) => Container(
+  // ✅ ฟังก์ชันสร้าง Playlist Item
+  Widget _buildPlaylistItem(String imageUrl, String title) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.network(
+            imageUrl,
             width: double.infinity,
             height: 110,
-            color: Colors.grey.shade800, 
-            child: const Center(
-              child: Icon(Icons.image_not_supported, color: Colors.white, size: 40),
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) => Container(
+              width: double.infinity,
+              height: 110,
+              color: Colors.grey.shade800,
+              child: const Center(
+                child: Icon(Icons.image_not_supported, color: Colors.white, size: 40),
+              ),
             ),
           ),
         ),
-      ),
-      const SizedBox(height: 5),
-      Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
+        const SizedBox(height: 5),
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+          overflow: TextOverflow.ellipsis,
         ),
-        overflow: TextOverflow.ellipsis,
-      ),
-    ],
-  );
-}
-
+      ],
+    );
+  }
 }

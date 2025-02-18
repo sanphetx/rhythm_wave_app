@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
             "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/04/18/USAT/73369584007-013-1989-taylors-version-2023.jpeg",
         title: "SUN",
         artist: "THE TOY",
+        
       ),
       Album(
         imageUrl:

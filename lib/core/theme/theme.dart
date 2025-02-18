@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rhythm_wave_app/core/theme/avatar/avatar_theme.dart';
 import 'package:rhythm_wave_app/core/theme/carouselTheme/wave_carousel_theme.dart';
 import 'package:rhythm_wave_app/core/theme/music_player/wave_music_player_Theme.dart';
+import 'package:rhythm_wave_app/core/theme/song_item/song_item_theme.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/borders.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/colors.dart';
 import 'package:rhythm_wave_app/core/theme/tokens/gradients.dart';
@@ -21,7 +22,8 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
         appBarTheme = WaveAppBarTheme(tokens: tokens),
         avatarTheme = WaveAvatarTheme(tokens: tokens),
         musicplayerTheme = WaveMusicPlayerTheme(tokens: tokens),
-        carouselTheme = WaveCarouselTheme(tokens: tokens);
+        carouselTheme = WaveCarouselTheme(tokens: tokens),
+        songItemTheme = WaveSongItemTheme(tokens: tokens); // เพิ่ม Theme
 
   final WaveTokens tokens;
   final WaveButtonTheme buttonTheme;
@@ -30,6 +32,8 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
   final WaveAvatarTheme avatarTheme;
   final WaveMusicPlayerTheme musicplayerTheme;
   final WaveCarouselTheme carouselTheme;
+    final WaveSongItemTheme songItemTheme; // เพิ่ม field
+
 
   @override
   WaveTheme copyWith({WaveTokens? tokens}) {
@@ -67,4 +71,6 @@ extension WaveThemeX on BuildContext {
   WaveAvatarTheme get waveAvatarTheme => waveTheme.avatarTheme;
   WaveMusicPlayerTheme get musicplayerTheme => waveTheme.musicplayerTheme;
   WaveCarouselTheme get carouselTheme => waveTheme.carouselTheme;
+  WaveSongItemTheme get waveSongItemTheme => waveTheme.songItemTheme;
+
 }

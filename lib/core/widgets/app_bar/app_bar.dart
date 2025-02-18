@@ -154,7 +154,7 @@ class _WaveAppBarState extends State<WaveAppBar> with SingleTickerProviderStateM
                     const SizedBox(width: 10),
                     WaveAvatar(
                       imageUrl:
-                          "https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/473570492_3081563001998781_1136621505821732936_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeG0rMXSJchwEfQ_-Zqzl3ezbUBhroXmbXltQGGuheZteQEfmXcQCLeMBdJnbdW_VqbVFXACkDJonFdol43Zaber&_nc_ohc=TCb2pVTvuLYQ7kNvgF-GG1M&_nc_oc=Adgu9xLRlEOYu87_VVYmo2bZ8naqC9DrUqlGG8EfvSaTHLZGBm1Q1QESTfmocwResok&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=AFqdi5oSID99kqoMuRwjbej&oh=00_AYA8McAAWbD_g2d47-8K_0p7KspIVIE4fXH9iyJGkRNElQ&oe=67B30910",
+                          "https://media.istockphoto.com/id/1443562748/photo/cute-ginger-cat.jpg?s=612x612&w=0&k=20&c=vvM97wWz-hMj7DLzfpYRmY2VswTqcFEKkC437hxm3Cg=",
                       size: context.waveAvatarTheme.properties.size,
                     ),
                   ],
@@ -173,7 +173,6 @@ class _WaveAppBarState extends State<WaveAppBar> with SingleTickerProviderStateM
     super.dispose();
   }
 }
-
 class ComplexDrawer extends StatefulWidget {
   final List<MenuItem> menuItems;
   final VoidCallback onClose;
@@ -195,7 +194,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
-      child: Material( 
+      child: Material(
         color: Colors.transparent,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
@@ -233,7 +232,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                L10n.of(context)?.pageAppBar_textPage ?? "Menu",
+                "Menu",
                 style: TextStyle(
                   color: context.waveColors?.secondary ?? Colors.white,
                   fontSize: 18,
@@ -259,13 +258,14 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
     );
   }
 
+
   Widget _buildMenuItems(BuildContext context) {
     return ListView.builder(
       itemCount: widget.menuItems.length,
       itemBuilder: (context, index) {
         final item = widget.menuItems[index];
 
-        return Material( 
+        return Material(
           color: Colors.transparent,
           child: ListTile(
             leading: Icon(item.icon, color: context.waveColors?.secondary ?? Colors.white),
@@ -277,7 +277,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
                 : null,
             onTap: () {
               widget.onClose();
-              item.onTap?.call();
+              item.onTap?.call(context);
             },
           ),
         );
@@ -290,7 +290,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
 class MenuItem {
   final IconData icon;
   final String label;
-  final VoidCallback? onTap;
+  final void Function(BuildContext)? onTap; 
 
   const MenuItem({
     required this.icon,
