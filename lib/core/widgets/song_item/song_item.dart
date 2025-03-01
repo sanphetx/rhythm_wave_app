@@ -24,7 +24,7 @@ class WaveSongItemWidget extends StatelessWidget {
     final songTheme = context.waveSongItemTheme.properties;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () {},
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: songTheme.padding),
         height: 70.0,
@@ -65,7 +65,7 @@ class WaveSongItemWidget extends StatelessWidget {
             Text(duration, style: songTheme.durationStyle),
             const SizedBox(width: 8.0),
             GestureDetector(
-              onTap: onMorePressed,
+              onTap: onMorePressed ?? () {},
               child: Icon(Icons.more_vert, color: songTheme.iconColor),
             ),
           ],

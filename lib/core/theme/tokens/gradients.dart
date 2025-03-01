@@ -7,13 +7,13 @@ final class WaveGradients extends ThemeExtension<WaveGradients> {
 
   static final light = WaveGradients(
     gradient1: LinearGradient(
-      begin: Alignment.topCenter,   // Start from the top
-      end: Alignment.bottomCenter,  // End at the bottom
-      stops: [0.0, 0.5, 1.0],        // Define the stops at 0%, 50%, and 100%
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [0.0, 0.75, 1.0],  // ✅ ขยายระยะสีม่วงให้กว้างขึ้น
       colors: [
-        Color(0xFF180A42), // Dark purple (0%)
-        Color(0xFF14111E), // Darker greyish-purple (50%)
-        Color(0xFF000000), // Black (100%)
+        Color(0xFF180A42), // สีม่วงเข้ม
+        Color(0xFF10082A), // ✅ สีม่วงเข้มขึ้นกว่าเดิม
+        Color(0xFF000000), // สีดำสนิท
       ],
     ),
   );
@@ -21,9 +21,7 @@ final class WaveGradients extends ThemeExtension<WaveGradients> {
   final LinearGradient gradient1;
 
   @override
-  WaveGradients copyWith({
-    LinearGradient? gradient1,
-  }) {
+  WaveGradients copyWith({LinearGradient? gradient1}) {
     return WaveGradients(
       gradient1: gradient1 ?? this.gradient1,
     );
@@ -31,9 +29,7 @@ final class WaveGradients extends ThemeExtension<WaveGradients> {
 
   @override
   WaveGradients lerp(ThemeExtension<WaveGradients>? other, double t) {
-    if (other is! WaveGradients) {
-      return this;
-    }
+    if (other is! WaveGradients) return this;
     return WaveGradients(
       gradient1: LinearGradient.lerp(gradient1, other.gradient1, t)!,
     );

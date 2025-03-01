@@ -6,7 +6,7 @@ final class WaveSongItemTheme extends ThemeExtension<WaveSongItemTheme> {
   WaveSongItemTheme({
     required WaveTokens tokens,
   }) : properties = WaveSongItemProperties(
-          backgroundColor: tokens.colors.surfaceContainer,
+          backgroundColor: tokens.colors.onSurfaceVariant,
           textColor: tokens.colors.onSurface,
           subtitleColor: tokens.colors.onSurfaceVariant,
           durationColor: tokens.colors.onSurfaceVariant,

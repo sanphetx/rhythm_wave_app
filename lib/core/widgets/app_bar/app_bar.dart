@@ -118,7 +118,7 @@ class _WaveAppBarState extends State<WaveAppBar> with SingleTickerProviderStateM
                   child: SvgPicture.asset(
                     Assets.icons.hamburgurMenu,
                     colorFilter: ColorFilter.mode(
-                      context.waveColors?.onSecondary ?? Colors.white,
+                      context.waveColors.onSecondary,
                       BlendMode.srcIn,
                     ),
                     height: 20,

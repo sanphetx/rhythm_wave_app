@@ -139,6 +139,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/location_dot.svg
   String get locationDot => 'assets/icons/location_dot.svg';
 
+  /// File path: assets/icons/logostart.svg
+  String get logostart => 'assets/icons/logostart.svg';
+
   /// File path: assets/icons/master_card.svg
   String get masterCard => 'assets/icons/master_card.svg';
 
@@ -246,6 +249,7 @@ class $AssetsIconsGen {
         imageNotAvailable,
         kbank,
         locationDot,
+        logostart,
         masterCard,
         messageActiveIcon,
         messageInactiveIcon,
@@ -280,10 +284,6 @@ class $AssetsImagesGen {
   AssetGenImage get logowave =>
       const AssetGenImage('assets/images/logowave.png');
 
-  /// File path: assets/images/mainicon.png
-  AssetGenImage get mainicon =>
-      const AssetGenImage('assets/images/mainicon.png');
-
   /// File path: assets/images/mastercard.png
   AssetGenImage get mastercard =>
       const AssetGenImage('assets/images/mastercard.png');
@@ -297,7 +297,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [kbank, logowave, mainicon, mastercard, userIcon2, visa];
+      [kbank, logowave, mastercard, userIcon2, visa];
 }
 
 class $AssetsVideosGen {

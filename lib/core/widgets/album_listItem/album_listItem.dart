@@ -16,13 +16,13 @@ class Album {
 class AlbumListItemWidget extends StatelessWidget {
   final Album album;
   final VoidCallback onMorePressed;
-  final double size; 
-  
+  final double size;
+
   const AlbumListItemWidget({
     super.key,
     required this.album,
     required this.onMorePressed,
-    this.size = 50,
+    this.size = 80, // ✅ ปรับให้ขนาดพอดี
   });
 
   @override
@@ -30,11 +30,12 @@ class AlbumListItemWidget extends StatelessWidget {
     final theme = context.waveTheme;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start, // ✅ ป้องกัน overflow
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(10),
             child: Image.network(
               album.imageUrl,
               width: size,
@@ -42,33 +43,40 @@ class AlbumListItemWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 10),
 
+          // ✅ ขยายพื้นที่ข้อความให้เหมาะสม
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  album.title.toUpperCase(),
+                  album.title,
                   style: TextStyle(
                     color: theme.tokens.colors.onPrimary,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   album.artist,
                   style: TextStyle(
                     color: theme.tokens.colors.onPrimary.withOpacity(0.7),
-                    fontSize: 10,
+                    fontSize: 12,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
           ),
 
+          // ✅ ปรับขนาดไอคอนให้เหมาะสม
           IconButton(
-            icon: const Icon(Icons.more_horiz, color: Colors.white),
+            icon: const Icon(Icons.more_horiz, color: Colors.white, size: 18),
             onPressed: onMorePressed,
           ),
         ],
@@ -84,28 +92,26 @@ class AlbumListWidget extends StatelessWidget {
   const AlbumListWidget({
     super.key,
     required this.albums,
-    this.size = 60,
+    this.size = 80, // ✅ ปรับให้ขนาดพอดี
   });
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return GridView.count(
       shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 2,
-      ),
-      itemCount: albums.length,
       physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      crossAxisCount: 2,  // ✅ ให้แสดง 2 คอลัมน์
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      childAspectRatio: 2.5, // ✅ ปรับอัตราส่วนให้พอดี
+      children: albums.map((album) {
         return AlbumListItemWidget(
-          album: albums[index],
-          onMorePressed: () => print("More options tapped on ${albums[index].title}"),
+          album: album,
+          onMorePressed: () => print("More options tapped on ${album.title}"),
           size: size,
         );
-      },
+      }).toList(),
     );
   }
 }
