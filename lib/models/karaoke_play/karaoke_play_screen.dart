@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:rhythm_wave_app/core/theme/theme.dart';
 import 'package:rhythm_wave_app/core/widgets/app_bar/app_bar.dart';
-import 'package:rhythm_wave_app/core/widgets/app_bar/data/menu_items.dart';
+import 'package:rhythm_wave_app/data/menu_items.dart';
 import 'package:rhythm_wave_app/core/widgets/music_player/music_player.dart';
 
 class KaraokePlayScreen extends StatefulWidget {

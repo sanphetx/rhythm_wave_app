@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rhythm_wave_app/core/theme/theme.dart';
+import 'package:rhythm_wave_app/core/widgets/album_listItem/album_listItem_and_playlist.dart';
 import 'package:rhythm_wave_app/core/widgets/app_bar/app_bar.dart';
-import 'package:rhythm_wave_app/core/widgets/app_bar/data/menu_items.dart';
+import 'package:rhythm_wave_app/data/menu_items.dart';
 import 'package:rhythm_wave_app/core/widgets/music_player/music_player.dart';
+import 'package:rhythm_wave_app/data/mock_playlists.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String profileImageUrl;
@@ -11,24 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> playlists = [
-      {
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/39/The_Weeknd_-_Starboy.png",
-        "title": "RED SUN IN SKY cn"
-      },
-      {
-        "imageUrl": "https://i.scdn.co/image/ab67616d00001e022a038d3bf875d23e4aeaa84e",
-        "title": "ตื่นมาคิด โทดไปปะวะ"
-      },
-      {
-        "imageUrl": "https://i.scdn.co/image/ab67616d00001e022a038d3bf875d23e4aeaa84e",
-        "title": "TSIS PLAYLIST"
-      },
-      {
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/39/The_Weeknd_-_Starboy.png",
-        "title": "ถามว่าแครมั้ย ก็ไม่"
-      },
-    ];
+    final List<Playlist> playlists = MockPlaylists.playlists; 
 
     return Scaffold(
       body: Container(
@@ -41,10 +26,8 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ✅ AppBar
               WaveAppBar(menuItems: appMenuItems),
 
-              // ✅ Profile Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -61,7 +44,6 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
 
-                    // ✅ Profile Picture & Name
                     Row(
                       children: [
                         ClipOval(
@@ -78,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        Expanded( // ✅ ป้องกัน overflow
+                        Expanded( 
                           child: Text(
                             "Sanphet Saefang",
                             style: const TextStyle(
@@ -86,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
-                            overflow: TextOverflow.ellipsis, // ✅ ป้องกันข้อความยาวเกินไป
+                            overflow: TextOverflow.ellipsis, 
                           ),
                         ),
                       ],
@@ -94,7 +76,6 @@ class ProfileScreen extends StatelessWidget {
 
                     const SizedBox(height: 20),
 
-                    // ✅ Playlist Section
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -122,7 +103,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
-              // ✅ Playlist Grid
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -137,15 +117,14 @@ class ProfileScreen extends StatelessWidget {
                     itemCount: playlists.length,
                     itemBuilder: (context, index) {
                       return _buildPlaylistItem(
-                        playlists[index]["imageUrl"]!,
-                        playlists[index]["title"]!,
+                        playlists[index].imageUrl,
+                        playlists[index].title,
                       );
                     },
                   ),
                 ),
               ),
 
-              // ✅ Music Player
               MusicPlayerWidget(
                 imageUrl: 'https://picsum.photos/250?image=9',
                 songTitle: 'Happier',
@@ -161,7 +140,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  // ✅ ฟังก์ชันสร้าง Playlist Item
   Widget _buildPlaylistItem(String imageUrl, String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

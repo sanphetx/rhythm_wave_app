@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           WaveTheme(tokens: WaveTokens.defaultTokens()), 
         ],
       ),
-      routerConfig: AppRouter.router, // ✅ ใช้ GoRouter
+      routerConfig: AppRouter.router,
       localizationsDelegates: const [
         L10n.delegate,
         GlobalMaterialLocalizations.delegate,

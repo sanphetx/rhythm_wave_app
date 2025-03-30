@@ -151,6 +151,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/message_inactive_icon.svg
   String get messageInactiveIcon => 'assets/icons/message_inactive_icon.svg';
 
+  /// File path: assets/icons/musi_dis.svg
+  String get musiDis => 'assets/icons/musi_dis.svg';
+
   /// File path: assets/icons/navigator.svg
   String get navigator => 'assets/icons/navigator.svg';
 
@@ -253,6 +256,7 @@ class $AssetsIconsGen {
         masterCard,
         messageActiveIcon,
         messageInactiveIcon,
+        musiDis,
         navigator,
         noodles,
         notiBell,
@@ -288,6 +292,10 @@ class $AssetsImagesGen {
   AssetGenImage get mastercard =>
       const AssetGenImage('assets/images/mastercard.png');
 
+  /// File path: assets/images/musicdis.png
+  AssetGenImage get musicdis =>
+      const AssetGenImage('assets/images/musicdis.png');
+
   /// File path: assets/images/user_icon2.png
   AssetGenImage get userIcon2 =>
       const AssetGenImage('assets/images/user_icon2.png');
@@ -297,7 +305,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [kbank, logowave, mastercard, userIcon2, visa];
+      [kbank, logowave, mastercard, musicdis, userIcon2, visa];
 }
 
 class $AssetsVideosGen {

@@ -7,7 +7,7 @@ import 'package:rhythm_wave_app/core/widgets/app_bar/app_bar.dart';
 final List<MenuItem> appMenuItems = [
   MenuItem(
     icon: Icons.grid_view,
-    label: 'Dashboard',
+    label: 'Playlist',
     onTap: (context) {
       Navigator.push(
         context,
@@ -17,7 +17,7 @@ final List<MenuItem> appMenuItems = [
   ),
   MenuItem(
     icon: Icons.subscriptions,
-    label: 'Category',
+    label: 'MusicCategories',
     onTap: (context) {
       Navigator.push(
         context,

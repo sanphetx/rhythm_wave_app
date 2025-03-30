@@ -35,7 +35,7 @@ final class WaveTheme extends ThemeExtension<WaveTheme> {
   final WaveAvatarTheme avatarTheme;
   final WaveMusicPlayerTheme musicplayerTheme;
   final WaveCarouselTheme carouselTheme;
-  final WaveSongItemTheme songItemTheme; // เพิ่ม field
+  final WaveSongItemTheme songItemTheme; 
 
   @override
   WaveTheme copyWith({WaveTokens? tokens}) {

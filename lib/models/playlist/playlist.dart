@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhythm_wave_app/core/theme/theme.dart';
 import 'package:rhythm_wave_app/core/widgets/app_bar/app_bar.dart';
-import 'package:rhythm_wave_app/core/widgets/app_bar/data/menu_items.dart';
+import 'package:rhythm_wave_app/data/menu_items.dart';
 import 'package:rhythm_wave_app/core/widgets/music_player/music_player.dart';
 import 'package:rhythm_wave_app/core/widgets/song_item/song_item.dart';
 
@@ -23,9 +23,7 @@ class PlaylistPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: context.waveGradients.gradient1,
-        ),
+        decoration: BoxDecoration(gradient: context.waveGradients.gradient1),
         child: SafeArea(
           child: Column(
             children: [
@@ -73,7 +71,7 @@ class PlaylistPage extends StatelessWidget {
 
               MusicPlayerWidget(
                 imageUrl:
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
+                    "https://i.pinimg.com/236x/ce/b3/9c/ceb39c0f2cc1e48dd4e5795b44a33f72.jpg",
                 songTitle: "Happier",
                 artist: "Olivia Rodrigo",
                 onPlay: () => print("Play Song"),
@@ -106,7 +104,7 @@ class PlaylistPage extends StatelessWidget {
                 return Container(
                   width: double.infinity,
                   height: 180,
-                  color: Colors.grey[800],
+                  color: Colors.white,
                   child: const Center(
                     child: Icon(Icons.image_not_supported, color: Colors.white),
                   ),
@@ -117,13 +115,15 @@ class PlaylistPage extends StatelessWidget {
           SizedBox(height: context.waveSpacing.sm),
           Text(
             "ตื่นมาก็โลดโหดไปป่ะว่ะ",
-            style: context.waveTypography.bold.text20,
+            style: context.waveTypography.bold.text20.copyWith(
+              color: Colors.white,
+            ),
           ),
           SizedBox(height: context.waveSpacing.xs),
           Text(
             "2018  •  118 songs  •  2 hr 14 m",
             style: context.waveTypography.regular.text14.copyWith(
-              color: context.waveColors.onSurfaceVariant,
+              color: Colors.white,
             ),
           ),
         ],
@@ -143,7 +143,7 @@ class PlaylistPage extends StatelessWidget {
               label: const Text("Play all"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.waveColors.primary,
-                foregroundColor: context.waveColors.onPrimary,
+                foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     context.waveBorders.borderRadiusSm,

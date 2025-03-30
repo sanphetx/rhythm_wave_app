@@ -115,12 +115,22 @@ class AlbumListWidget extends StatelessWidget {
     );
   }
 }
+class Playlist {
+  final String imageUrl;
+  final String title;
 
+  Playlist({
+    required this.imageUrl,
+    required this.title,
+  });
+}
 class PlaylistListWidget extends StatelessWidget {
-  final List<String> playlistImages;
-  final double width;
+  final List<Playlist> playlists;
 
-  const PlaylistListWidget({super.key, required this.playlistImages, this.width = 140});
+  const PlaylistListWidget({
+    super.key,
+    required this.playlists,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -128,22 +138,22 @@ class PlaylistListWidget extends StatelessWidget {
       height: 110,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: playlistImages.length,
+        itemCount: playlists.length,
         itemBuilder: (context, index) {
-          return _buildPlaylistItem(playlistImages[index]);
+          return _buildPlaylistItem(playlists[index]);
         },
       ),
     );
   }
 
-  Widget _buildPlaylistItem(String imageUrl) {
+  Widget _buildPlaylistItem(Playlist playlist) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.network(
-          imageUrl,
-          width: width,
+          playlist.imageUrl,
+          width: 140,
           height: 110,
           fit: BoxFit.cover,
         ),
@@ -151,3 +161,18 @@ class PlaylistListWidget extends StatelessWidget {
     );
   }
 }
+
+  Widget _buildPlaylistItem(Playlist playlist) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          playlist.imageUrl,
+          width: 140,
+          height: 110,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }

@@ -1,52 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:rhythm_wave_app/core/theme/theme.dart';
-import 'package:rhythm_wave_app/core/widgets/album_listItem/album_listItem.dart';
+import 'package:rhythm_wave_app/core/widgets/album_listItem/album_listItem_and_playlist.dart';
 import 'package:rhythm_wave_app/core/widgets/app_bar/app_bar.dart';
-import 'package:rhythm_wave_app/core/widgets/app_bar/data/menu_items.dart';
 import 'package:rhythm_wave_app/core/widgets/carousel/carousel_slider.dart';
 import 'package:rhythm_wave_app/core/widgets/music_player/music_player.dart';
+import 'package:rhythm_wave_app/data/menu_items.dart';
+import 'package:rhythm_wave_app/data/mock_albums.dart';
+import 'package:rhythm_wave_app/data/mock_playlists.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late List<Album> albums = MockAlbums.albums;
+  late List<Playlist> playlists = MockPlaylists.playlists; // ✅ ใช้ `MockPlaylists.playlists`
+
+  @override
   Widget build(BuildContext context) {
-    final List<Album> albums = [
-      Album(
-        imageUrl:
-            "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/04/18/USAT/73369584007-013-1989-taylors-version-2023.jpeg",
-        title: "SUN",
-        artist: "THE TOY",
-        
-      ),
-      Album(
-        imageUrl:
-            "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/04/18/USAT/73369584007-013-1989-taylors-version-2023.jpeg",
-        title: "How Sweet",
-        artist: "New",
-      ),
-      Album(
-        imageUrl:
-            "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
-        title: "Starboy",
-        artist: "The Weeknd",
-      ),
-      Album(
-        imageUrl:
-            "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
-        title: "1989",
-        artist: "Taylor Swift",
-      ),
-      
-    ];
-
-    final List<String> playlistImages = [
-            "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
-
-      "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
-      "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/The_Weeknd_-_Starboy.png/220px-The_Weeknd_-_Starboy.png",
-    ];
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -79,12 +53,13 @@ class HomeScreen extends StatelessWidget {
                     AlbumListWidget(albums: albums, size: 60),
 
                     const SizedBox(height: 20),
-                    _buildSectionTitle(context, "Recommended playlist" ),
-                    PlaylistListWidget(playlistImages: playlistImages),
+                    _buildSectionTitle(context, "Recommended playlist"),
+                    PlaylistListWidget(playlists: playlists), // ✅ ใช้ `MockPlaylists.playlists`
                   ],
                 ),
               ),
-               MusicPlayerWidget(
+
+              MusicPlayerWidget(
                 imageUrl: 'https://picsum.photos/250?image=9',
                 songTitle: 'Happier',
                 artist: 'Olivia Rodrigo',
@@ -110,7 +85,6 @@ class HomeScreen extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      
     );
   }
 }
